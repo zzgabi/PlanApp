@@ -25,7 +25,7 @@ namespace ManageAccommodation.Models
         //public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         //public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
         public virtual DbSet<Dorm> Dorms { get; set; } = null!;
-        public virtual DbSet<NoticeModel> Notices { get; set; } = null!;
+        public virtual DbSet<Notice> Notices { get; set; } = null!;
         public virtual DbSet<Payment> Payments { get; set; } = null!;
         public virtual DbSet<Room> Rooms { get; set; } = null!;
         public virtual DbSet<Student> Students { get; set; } = null!;
@@ -180,7 +180,7 @@ namespace ManageAccommodation.Models
                 entity.Property(e => e.TotalRooms).HasColumnName("Total_Rooms");
             });
 
-            modelBuilder.Entity<NoticeModel>(entity =>
+            modelBuilder.Entity<Notice>(entity =>
             {
                 entity.HasKey(e => e.Idnotification)
                     .HasName("PK__Notices__5456E7BCCC45E5AD");

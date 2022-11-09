@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ManageAccommodation.Models.DormModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Dorms Overview</h1>
+
+<p>
+    <a asp-action="Create">Add new dorm</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Iddorm)
+            </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.DormName)*@
+                Dorm name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+               @* @Html.DisplayNameFor(model => model.TotalRooms)*@
+               Total Rooms
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Iddorm)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.DormName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalRooms)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Iddorm }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Iddorm }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Iddorm })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

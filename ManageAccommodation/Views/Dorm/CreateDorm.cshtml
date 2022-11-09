@@ -1,0 +1,56 @@
+﻿@model ManageAccommodation.Models.DormModel
+
+@{
+    ViewData["Title"] = "CreateDorm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add new Dorm</h1>
+
+<h4>Dorm form</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="Iddorm" class="control-label"></label>
+                <input asp-for="Iddorm" class="form-control" />
+                <span asp-validation-for="Iddorm" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="DormName" class="control-label"></label>
+                <input asp-for="DormName" class="form-control" />
+                <span asp-validation-for="DormName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adress" class="control-label"></label>
+                <input asp-for="Adress" class="form-control" />
+                <span asp-validation-for="Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalRooms" class="control-label"></label>
+                <input asp-for="TotalRooms" class="form-control" />
+                <span asp-validation-for="TotalRooms" class="text-danger"></span>
+            </div>
+            <br/>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Dorms Overview</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

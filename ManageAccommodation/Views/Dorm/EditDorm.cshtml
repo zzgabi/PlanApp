@@ -1,0 +1,58 @@
+﻿@model ManageAccommodation.Models.DormModel
+
+@{
+    ViewData["Title"] = "EditDorm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Dorm</h1>
+
+<h4>Form:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                
+                <input asp-for="Iddorm" class="form-control" hidden/>
+                
+            </div>
+            <div class="form-group">
+                @*<label asp-for="DormName" class="control-label"></label>*@
+                Dorm name
+                <input asp-for="DormName" class="form-control" />
+                <span asp-validation-for="DormName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Adress" class="control-label"></label>
+                <input asp-for="Adress" class="form-control" />
+                <span asp-validation-for="Adress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @*<label asp-for="TotalRooms" class="control-label"></label>*@
+                Total rooms
+                <input asp-for="TotalRooms" class="form-control" />
+                <span asp-validation-for="TotalRooms" class="text-danger"></span>
+            </div>
+            <br/>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Dorms Overview</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

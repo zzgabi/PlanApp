@@ -1,0 +1,51 @@
+﻿@model ManageAccommodation.Models.DormModel
+
+@{
+    ViewData["Title"] = "DetailsDorm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Dorm Details</h1>
+
+<div>
+    <br />
+    <hr />
+    <dl class="row">
+        @*<dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Iddorm)
+        </dt>*@
+@*        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Iddorm)
+        </dd>*@
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.DormName)*@
+            Dorm Name
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DormName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.City)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.City)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Adress)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Adress)
+        </dd>
+        <dt class = "col-sm-2">
+            @*@Html.DisplayNameFor(model => model.TotalRooms)*@
+            Total Rooms
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TotalRooms)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Iddorm }) |
+    <a asp-action="Index">Back to Dorm Overview</a>
+</div>
