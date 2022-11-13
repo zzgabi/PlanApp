@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ManageAccommodation.Models.StudentModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Students Overview</h1>
+
+<p>
+    <a asp-action="Create">Add new Student</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Idstudent)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mobile)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Idroom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PaymStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Debt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Idstudent)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Idroom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PaymStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Debt)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Idstudent }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Idstudent }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Idstudent })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
