@@ -3,10 +3,9 @@ using ManageAccommodation.Models.DBObjects;
 
 namespace ManageAccommodation.Repository
 {
-    public class RoomRepository
+    public class RoomRepository 
     {
         private ApplicationDbContext dbContext;
-
         public RoomRepository()
         {
             this.dbContext = new ApplicationDbContext();
@@ -14,7 +13,7 @@ namespace ManageAccommodation.Repository
 
         public RoomRepository(ApplicationDbContext dbContext)
         {
-            this.dbContext = dbContext; 
+            this.dbContext = dbContext;
         }
 
         private RoomModel MapDbObjectToModel(Room dbroom)
@@ -23,7 +22,7 @@ namespace ManageAccommodation.Repository
 
             if(dbroom != null)
             {
-                model.Iddorm = dbroom.Idroom;
+                model.Iddorm = dbroom.Iddorm;
                 model.OccupiedNo = dbroom.OccupiedNo;
                 model.VacanciesNo = dbroom.VacanciesNo;
                 model.Capacity = dbroom.Capacity;
@@ -36,6 +35,8 @@ namespace ManageAccommodation.Repository
 
         private Room MapModelToDbObject(RoomModel model)
         {
+            //var dormRepo = new DormRepository();
+
             Room room = new Room();
 
             if(model != null)
@@ -87,6 +88,7 @@ namespace ManageAccommodation.Repository
                 existingRoom.Status = roomModel.Status;
                 existingRoom.Capacity = roomModel.Capacity;
                 existingRoom.PricePerSt = roomModel.PricePerSt;
+                existingRoom.Iddorm = roomModel.Iddorm;
                 dbContext.SaveChanges();
             }
         }
@@ -101,6 +103,5 @@ namespace ManageAccommodation.Repository
                 dbContext.SaveChanges();
             }
         }
-
     }
 }

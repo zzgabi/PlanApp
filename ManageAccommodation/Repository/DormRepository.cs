@@ -1,5 +1,7 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Models.DBObjects;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManageAccommodation.Repository
 {
@@ -15,6 +17,7 @@ namespace ManageAccommodation.Repository
         {
             this.dbContext = dbContext; 
         }
+      
 
         private DormModel MapDbObjectToModel(Dorm dbdorm)
         {
@@ -56,6 +59,7 @@ namespace ManageAccommodation.Repository
             }
             return dormList;
         }
+
 
         public DormModel GetDormByID(Guid ID)
         {

@@ -43,7 +43,7 @@
             <div class="form-group">
                @* <label asp-for="Iddorm" class="control-label"></label>*@
                 Dorm Name
-                <input asp-for="Iddorm" class="form-control" />
+                @Html.DropDownList("Iddorm", new SelectList(@ViewBag.DormList, "Value", "Text"), "Select Dorm", new {@class = "form-control"})
                 <span asp-validation-for="Iddorm" class="text-danger"></span>
             </div>
             <div class="form-group">

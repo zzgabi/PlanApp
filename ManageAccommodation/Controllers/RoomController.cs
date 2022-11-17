@@ -1,17 +1,21 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Repository;
+using ManageAccommodation.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ManageAccommodation.Controllers
 {
     public class RoomController : Controller
     {
         private Repository.RoomRepository _repository;
+        private Repository.DormRepository _dormRepository;
 
         public RoomController(ApplicationDbContext dbContext)
         {
-            _repository = new Repository.RoomRepository(dbContext);
+            _repository = new RoomRepository(dbContext);
+            _dormRepository = new DormRepository(dbContext);
         }
 
 
@@ -19,6 +23,10 @@ namespace ManageAccommodation.Controllers
         public ActionResult Index()
         {
             var rooms = _repository.GetAllRoomsInfo();
+            foreach(var item in rooms)
+            {
+                item.DormName = _dormRepository.GetDormByID(item.Iddorm).DormName;
+            }
             return View("Index", rooms);
         }
 
@@ -26,12 +34,22 @@ namespace ManageAccommodation.Controllers
         public ActionResult Details(Guid id)
         {
             var model = _repository.GetRoomById(id);
+            model.DormName = _dormRepository.GetDormByID(model.Iddorm).DormName;
             return View("RoomDetails", model);
         }
 
         // GET: RoomController/Create
-        public ActionResult Create()
+        public  ActionResult Create()
         {
+            var dormsList = _dormRepository.GetAllDormsInfo().Select(x => new SelectListItem(x.DormName, x.Iddorm.ToString()));
+            ViewBag.DormList = dormsList;
+
+            List<SelectListItem> Status = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="Vacancy", Value="Vacancy"},
+                new SelectListItem() { Text="Ocupied", Value="Ocupied"},
+            };
+            ViewBag.Status = Status;
             return View("CreateRoom");
         }
 
@@ -42,16 +60,17 @@ namespace ManageAccommodation.Controllers
         {
             try
             {
-                Models.RoomModel model = new Models.RoomModel();
-
+                //Models.RoomModel model = new Models.RoomModel();
+                var model = new RoomModel();
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
 
+                _repository.InsertRoom(model);
+
                 if (task.Result)
                 {
-                    _repository.InsertRoom(model);
                 }
-                return View("CreateRoom");
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -62,6 +81,9 @@ namespace ManageAccommodation.Controllers
         // GET: RoomController/Edit/5
         public ActionResult Edit(Guid id)
         {
+            var dormsList = _dormRepository.GetAllDormsInfo().Select(x => new SelectListItem(x.DormName, x.Iddorm.ToString()));
+            ViewBag.DormList = dormsList;
+
             var model = _repository.GetRoomById(id);
             return View("EditRoom", model);
         }
@@ -78,15 +100,9 @@ namespace ManageAccommodation.Controllers
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
 
-                if (task.Result)
-                {
-                    _repository.UpdateRoom(model);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index", id);
-                }
+                _repository.UpdateRoom(model);
+                return RedirectToAction("Index");
+
             }
             catch
             {
