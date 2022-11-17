@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\zzgabi\\Desktop\\New folder\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj": {}
+    "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\zzgabi\\Desktop\\New folder\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj": {
+    "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\zzgabi\\Desktop\\New folder\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj",
+        "projectUniqueName": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj",
         "projectName": "ManageAccommodation",
-        "projectPath": "C:\\Users\\zzgabi\\Desktop\\New folder\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj",
+        "projectPath": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\ManageAccommodation.csproj",
         "packagesPath": "C:\\Users\\zzgabi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\zzgabi\\Desktop\\New folder\\ManageAccommodation\\ManageAccommodation\\obj\\",
+        "outputPath": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

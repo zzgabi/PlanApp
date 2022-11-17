@@ -8,105 +8,105 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ManageAccommodation
 build_property.RootNamespace = ManageAccommodation
-build_property.ProjectDir = C:\Users\zzgabi\Desktop\New folder\ManageAccommodation\ManageAccommodation\
+build_property.ProjectDir = C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\zzgabi\Desktop\New folder\ManageAccommodation\ManageAccommodation
+build_property.MSBuildProjectDirectory = C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Areas/Identity/Pages/_ViewStart.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Dorm/CreateDorm.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Dorm/CreateDorm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9ybVxDcmVhdGVEb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Dorm/DeleteDorm.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Dorm/DeleteDorm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9ybVxEZWxldGVEb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Dorm/DetailsDorm.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Dorm/DetailsDorm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9ybVxEZXRhaWxzRG9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Dorm/EditDorm.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Dorm/EditDorm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9ybVxFZGl0RG9ybS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Dorm/Index.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Dorm/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9ybVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Home/Index.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Home/Privacy.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Room/CreateRoom.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Room/CreateRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxDcmVhdGVSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Room/DeleteRoom.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Room/DeleteRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxEZWxldGVSb29tLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Room/EditRoom.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Room/EditRoom.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxFZGl0Um9vbS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Room/Index.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Room/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Room/RoomDetails.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Room/RoomDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUm9vbVxSb29tRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Shared/Error.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Shared/_LoginPartial.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Student/CreateStudent.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Student/CreateStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxDcmVhdGVTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Student/DeleteStudent.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Student/DeleteStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxEZWxldGVTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Student/EditStudent.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Student/EditStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxFZGl0U3R1ZGVudC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Student/Index.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Student/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Student/StudentDetails.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Student/StudentDetails.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3R1ZGVudFxTdHVkZW50RGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/_ViewImports.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/_ViewStart.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/zzgabi/Desktop/New folder/ManageAccommodation/ManageAccommodation/Views/Shared/_Layout.cshtml]
+[C:/Users/zzgabi/Desktop/PlanAppp/ManageAccommodation/ManageAccommodation/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-72145kq10t

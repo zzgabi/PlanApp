@@ -2,6 +2,7 @@
 using ManageAccommodation.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ManageAccommodation.Controllers
 {
@@ -9,16 +10,22 @@ namespace ManageAccommodation.Controllers
     {
 
         private Repository.StudentRepository _repository;
+        private Repository.RoomRepository _roomRepository;
 
         public StudentController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.StudentRepository(dbContext);
+            _roomRepository = new RoomRepository(dbContext);
         }
 
         // GET: StudentController
         public ActionResult Index()
         {
             var students = _repository.GetAllStudents();
+            foreach(var student in students)
+            {
+                student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
+            }
             return View("Index", students);
         }
 
@@ -32,6 +39,14 @@ namespace ManageAccommodation.Controllers
         // GET: StudentController/Create
         public ActionResult Create()
         {
+            List<SelectListItem> Status = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="Paid", Value="Paid"},
+                new SelectListItem() { Text="Unpaid", Value="Unpaid"},
+            };
+            var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            ViewBag.RoomNo = rooms;
+            ViewBag.Status = Status;
             return View("CreateStudent");
         }
 
@@ -42,16 +57,14 @@ namespace ManageAccommodation.Controllers
         {
             try
             {
-                Models.StudentModel model = new Models.StudentModel();
-
+                var model = new StudentModel();
+                
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
 
-                if (task.Result)
-                {
-                    _repository.InsertStudent(model);
-                }
-                return View("CreateStudent");
+                _repository.InsertStudent(model);
+               
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -62,6 +75,15 @@ namespace ManageAccommodation.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(Guid id)
         {
+            List<SelectListItem> Status = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="Paid", Value="Paid"},
+                new SelectListItem() { Text="Unpaid", Value="Unpaid"},
+            };
+            var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            ViewBag.RoomNo = rooms;
+            ViewBag.Status = Status;
+
             var model = _repository.GetStudentById(id);
             return View("EditStudent", model);
         }
@@ -78,15 +100,9 @@ namespace ManageAccommodation.Controllers
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
 
-                if (task.Result)
-                {
-                    _repository.UpdateStudent(model);
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("Index", id);
-                }
+                _repository.UpdateStudent(model);
+                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -98,6 +114,7 @@ namespace ManageAccommodation.Controllers
         public ActionResult Delete(Guid id)
         {
             var model = _repository.GetStudentById(id);
+            model.RoomNo = _roomRepository.GetRoomById(model.Idroom).Idroom.ToString().Substring(0, 5);
             return View("DeleteStudent", model);
         }
 

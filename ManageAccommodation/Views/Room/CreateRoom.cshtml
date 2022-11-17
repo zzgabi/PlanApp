@@ -13,14 +13,11 @@
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @*<div class="form-group">
-                <label asp-for="Idroom" class="control-label"></label>
-                <input asp-for="Idroom" class="form-control" />
-                <span asp-validation-for="Idroom" class="text-danger"></span>
-            </div>*@
+
             <div class="form-group">
-                <label asp-for="Status" class="control-label"></label>
-                <input asp-for="Status" class="form-control" />
+                Room Status
+                @Html.DropDownList("Status", new SelectList(@ViewBag.Status, "Value", "Text"), "Select Status", new {@class = "form-control"})
+                @*<input asp-for="Status" class="form-control" />*@
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,8 +36,8 @@
                 <span asp-validation-for="VacanciesNo" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Iddorm" class="control-label"></label>
-                <input asp-for="Iddorm" class="form-control" />
+                Select Dorm
+                @Html.DropDownList("Iddorm", new SelectList(@ViewBag.DormList, "Value", "Text"), "Select Dorm", new {@class = "form-control"})
                 <span asp-validation-for="Iddorm" class="text-danger"></span>
             </div>
             <div class="form-group">

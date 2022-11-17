@@ -7,5 +7,7 @@
         public string City { get; set; } = null!;
         public string Adress { get; set; } = null!;
         public int TotalRooms { get; set; }
+
+
     }
 }

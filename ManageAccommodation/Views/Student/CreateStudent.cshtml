@@ -32,17 +32,17 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Idroom" class="control-label"></label>
-                <input asp-for="Idroom" class="form-control" />
+                Room
+                @Html.DropDownList("Idroom", new SelectList(@ViewBag.RoomNo, "Value", "Text"), "Select Room Code", new {@class = "form-control"})
                 <span asp-validation-for="Idroom" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PaymStatus" class="control-label"></label>
-                <input asp-for="PaymStatus" class="form-control" />
+                @Html.DropDownList("PaymStatus", new SelectList(@ViewBag.Status, "Value", "Text"), "Select Status", new {@class = "form-control"})
                 <span asp-validation-for="PaymStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Debt" class="control-label"></label>
+                Debt (Lei)
                 <input asp-for="Debt" class="form-control" />
                 <span asp-validation-for="Debt" class="text-danger"></span>
             </div>
@@ -54,7 +54,7 @@
         </form>
     </div>
 </div>
-
+<br />
 <div>
     <a asp-action="Index">Back to Students List</a>
 </div>

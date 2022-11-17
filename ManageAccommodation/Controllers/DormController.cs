@@ -9,6 +9,7 @@ namespace ManageAccommodation.Controllers
 
         private Repository.DormRepository _repository;
 
+
         public DormController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.DormRepository(dbContext);

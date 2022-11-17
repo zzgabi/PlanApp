@@ -1,20 +1,25 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Models.DBObjects;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManageAccommodation.Repository
 {
     public class DormRepository
     {
         private ApplicationDbContext dbContext;
+        private Repository.RoomRepository _repository;
 
         public DormRepository()
         {
             this.dbContext = new ApplicationDbContext();
+            _repository = new Repository.RoomRepository(dbContext);
         }
         public DormRepository(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext; 
         }
+      
 
         private DormModel MapDbObjectToModel(Dorm dbdorm)
         {
@@ -57,6 +62,7 @@ namespace ManageAccommodation.Repository
             return dormList;
         }
 
+
         public DormModel GetDormByID(Guid ID)
         {
             return MapDbObjectToModel(dbContext.Dorms.FirstOrDefault(x => x.Iddorm == ID));
@@ -88,11 +94,29 @@ namespace ManageAccommodation.Repository
         public void DeleteDorm(DormModel dormModel)
         {
             Dorm existingDorm = dbContext.Dorms.FirstOrDefault(x => x.Iddorm == dormModel.Iddorm);
+            
 
             if(existingDorm != null)
             {
+                RemoveRoomOnOnDormDeleted(existingDorm.Iddorm);
                 dbContext.Dorms.Remove(existingDorm);
                 dbContext.SaveChanges();
+            }
+        }
+
+        public void RemoveRoomOnOnDormDeleted(Guid id)
+        {
+            var rooms = dbContext.Rooms.Where(x => x.Iddorm == id);
+
+            foreach(var item in rooms)
+            {
+                var studs = dbContext.Students.Where(x => x.Idroom == item.Idroom);
+                foreach(var itemS in studs)
+                {
+                    dbContext.Students.Remove(itemS);
+                }
+
+                dbContext.Rooms.Remove(item);
             }
         }
     }

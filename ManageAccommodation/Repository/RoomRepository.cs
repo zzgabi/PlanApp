@@ -3,10 +3,9 @@ using ManageAccommodation.Models.DBObjects;
 
 namespace ManageAccommodation.Repository
 {
-    public class RoomRepository
+    public class RoomRepository 
     {
         private ApplicationDbContext dbContext;
-
         public RoomRepository()
         {
             this.dbContext = new ApplicationDbContext();
@@ -14,7 +13,7 @@ namespace ManageAccommodation.Repository
 
         public RoomRepository(ApplicationDbContext dbContext)
         {
-            this.dbContext = dbContext; 
+            this.dbContext = dbContext;
         }
 
         private RoomModel MapDbObjectToModel(Room dbroom)
@@ -23,7 +22,7 @@ namespace ManageAccommodation.Repository
 
             if(dbroom != null)
             {
-                model.Iddorm = dbroom.Idroom;
+                model.Iddorm = dbroom.Iddorm;
                 model.OccupiedNo = dbroom.OccupiedNo;
                 model.VacanciesNo = dbroom.VacanciesNo;
                 model.Capacity = dbroom.Capacity;
@@ -36,6 +35,8 @@ namespace ManageAccommodation.Repository
 
         private Room MapModelToDbObject(RoomModel model)
         {
+            //var dormRepo = new DormRepository();
+
             Room room = new Room();
 
             if(model != null)
@@ -67,6 +68,11 @@ namespace ManageAccommodation.Repository
             return MapDbObjectToModel(dbContext.Rooms.FirstOrDefault(x => x.Idroom == id));
         }
 
+        public RoomModel GetRoomByDormId(Guid id)
+        {
+            return MapDbObjectToModel(dbContext.Rooms.FirstOrDefault(x => x.Iddorm == id));
+        }
+
         public void InsertRoom(RoomModel roomModel)
         {
             roomModel.Idroom = Guid.NewGuid();
@@ -87,6 +93,7 @@ namespace ManageAccommodation.Repository
                 existingRoom.Status = roomModel.Status;
                 existingRoom.Capacity = roomModel.Capacity;
                 existingRoom.PricePerSt = roomModel.PricePerSt;
+                existingRoom.Iddorm = roomModel.Iddorm;
                 dbContext.SaveChanges();
             }
         }
@@ -97,10 +104,19 @@ namespace ManageAccommodation.Repository
 
             if(existingRoom != null)
             {
+                RemoveStudentsOnRoomDeleted(existingRoom.Idroom);
                 dbContext.Rooms.Remove(existingRoom);
                 dbContext.SaveChanges();
             }
         }
-
+        
+        public void RemoveStudentsOnRoomDeleted(Guid id)
+        {
+            var studs = dbContext.Students.Where(x => x.Idroom == id);
+            foreach(var item in studs)
+            {
+                dbContext.Students.Remove(item);
+            }
+        }
     }
 }

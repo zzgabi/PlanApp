@@ -7,9 +7,8 @@
 
 <h1>Delete Student</h1>
 
-<h3>Are you sure you want to delete this Student: @Html.DisplayFor(model => model.StudentName)?</h3>
+<h3>Are you sure you want to delete Student: @Html.DisplayFor(model => model.StudentName)?</h3>
 <div>
-    <h4>StudentModel</h4>
     <hr />
     <dl class="row">
        @* <dt class = "col-sm-2">
@@ -37,10 +36,10 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idroom)
+            From Room:
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idroom)
+            @Html.DisplayFor(model => model.RoomNo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PaymStatus)
