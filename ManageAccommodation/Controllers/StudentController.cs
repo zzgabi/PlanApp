@@ -44,7 +44,7 @@ namespace ManageAccommodation.Controllers
                 new SelectListItem() {Text="Paid", Value="Paid"},
                 new SelectListItem() { Text="Unpaid", Value="Unpaid"},
             };
-            var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            var rooms = _roomRepository.GetAllFreeRooms().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
             ViewBag.RoomNo = rooms;
             ViewBag.Status = Status;
             return View("CreateStudent");
@@ -58,11 +58,12 @@ namespace ManageAccommodation.Controllers
             try
             {
                 var model = new StudentModel();
-                
                 var task = TryUpdateModelAsync(model);
                 task.Wait();
 
                 _repository.InsertStudent(model);
+                var room = _roomRepository.GetRoomById(model.Idroom);
+                _roomRepository.UpdateRoomOnAddStudent(room);
                
                 return RedirectToAction("Index");
             }
@@ -115,6 +116,7 @@ namespace ManageAccommodation.Controllers
         {
             var model = _repository.GetStudentById(id);
             model.RoomNo = _roomRepository.GetRoomById(model.Idroom).Idroom.ToString().Substring(0, 5);
+
             return View("DeleteStudent", model);
         }
 
@@ -125,6 +127,12 @@ namespace ManageAccommodation.Controllers
         {
             try
             {
+                //to do: get room by student id  / update status
+                Guid roomId = _repository.GetIdRoomByStudentId(id);
+                var room = _roomRepository.GetRoomById(roomId);
+                //update status room
+                _roomRepository.UpdateRoomOnStudentDelete(room);
+
                 var model = _repository.GetStudentById(id);
                 _repository.DeleteStudent(model);
                 return RedirectToAction("Index");

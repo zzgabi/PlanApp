@@ -63,6 +63,19 @@ namespace ManageAccommodation.Repository
             return roomList;
         }
 
+        public List<RoomModel> GetAllFreeRooms()
+        {
+            List<RoomModel> roomList = new List<RoomModel>();
+            foreach(Room dbRoom in dbContext.Rooms)
+            {
+                if(dbRoom.VacanciesNo != 0)
+                {
+                    roomList.Add(MapDbObjectToModel(dbRoom));
+                }
+            }
+            return roomList ;
+        }
+
         public RoomModel GetRoomById(Guid id)
         {
             return MapDbObjectToModel(dbContext.Rooms.FirstOrDefault(x => x.Idroom == id));
@@ -72,6 +85,8 @@ namespace ManageAccommodation.Repository
         {
             return MapDbObjectToModel(dbContext.Rooms.FirstOrDefault(x => x.Iddorm == id));
         }
+
+
 
         public void InsertRoom(RoomModel roomModel)
         {
@@ -94,6 +109,39 @@ namespace ManageAccommodation.Repository
                 existingRoom.Capacity = roomModel.Capacity;
                 existingRoom.PricePerSt = roomModel.PricePerSt;
                 existingRoom.Iddorm = roomModel.Iddorm;
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void UpdateRoomOnAddStudent(RoomModel roomModel)
+        {
+            Room existingRoom = dbContext.Rooms.FirstOrDefault(x => x.Idroom == roomModel.Idroom);
+            if(existingRoom != null)
+            {
+                if (existingRoom.VacanciesNo == 1)
+                {
+                    existingRoom.OccupiedNo = roomModel.OccupiedNo + 1;
+                    existingRoom.VacanciesNo = roomModel.VacanciesNo - 1;
+                    existingRoom.Status = "Ocupied";
+                }
+                else
+                {
+                    existingRoom.OccupiedNo = roomModel.OccupiedNo + 1;
+                    existingRoom.VacanciesNo = roomModel.VacanciesNo - 1;
+                }
+                dbContext.SaveChanges();
+            }
+        }
+
+        public void UpdateRoomOnStudentDelete(RoomModel roomModel)
+        {
+            Room existingRoom = dbContext.Rooms.FirstOrDefault(x => x.Idroom == roomModel.Idroom); 
+            if(existingRoom != null)
+            {
+                existingRoom.OccupiedNo = roomModel.OccupiedNo - 1;
+                existingRoom.VacanciesNo = roomModel.VacanciesNo + 1;
+                existingRoom.Status = "Vacancy";
+                
                 dbContext.SaveChanges();
             }
         }

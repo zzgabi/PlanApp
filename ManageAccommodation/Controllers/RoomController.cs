@@ -1,9 +1,11 @@
 ﻿using ManageAccommodation.Models;
+using ManageAccommodation.Models.DBObjects;
 using ManageAccommodation.Repository;
 using ManageAccommodation.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManageAccommodation.Controllers
 {
@@ -11,11 +13,13 @@ namespace ManageAccommodation.Controllers
     {
         private Repository.RoomRepository _repository;
         private Repository.DormRepository _dormRepository;
+        private Repository.StudentRepository _studentRepository;
 
         public RoomController(ApplicationDbContext dbContext)
         {
             _repository = new RoomRepository(dbContext);
             _dormRepository = new DormRepository(dbContext);
+            _studentRepository = new StudentRepository(dbContext);
         }
 
 
@@ -35,8 +39,15 @@ namespace ManageAccommodation.Controllers
         {
             var model = _repository.GetRoomById(id);
             model.DormName = _dormRepository.GetDormByID(model.Iddorm).DormName;
+            
+            var studentModel = _studentRepository.GetStudentsByIdRoom(id);
+            ViewData["StudsAssign"] = studentModel;
             return View("RoomDetails", model);
+
+
+
         }
+
 
         // GET: RoomController/Create
         public  ActionResult Create()
@@ -83,6 +94,7 @@ namespace ManageAccommodation.Controllers
         {
             var dormsList = _dormRepository.GetAllDormsInfo().Select(x => new SelectListItem(x.DormName, x.Iddorm.ToString()));
             ViewBag.DormList = dormsList;
+
 
             var model = _repository.GetRoomById(id);
             return View("EditRoom", model);

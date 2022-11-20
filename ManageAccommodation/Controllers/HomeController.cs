@@ -15,6 +15,9 @@ namespace ManageAccommodation.Controllers
 
         public IActionResult Index()
         {
+            // to do: update debts
+            DateTime date = DateTime.Now;
+
             return View();
         }
 

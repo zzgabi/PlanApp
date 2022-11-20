@@ -66,6 +66,23 @@ namespace ManageAccommodation.Repository
             return MapDbObjectToModel(dbContext.Students.FirstOrDefault(x => x.Idstudent == id));
         }
 
+        public Guid GetIdRoomByStudentId(Guid id)
+        {
+            return MapDbObjectToModel(dbContext.Students.FirstOrDefault(x => x.Idstudent == id)).Idroom;
+        }
+
+        public List<StudentModel> GetStudentsByIdRoom(Guid id)
+        {
+            List<StudentModel> studentList = new List<StudentModel>();
+
+            foreach (Student dbStudent in dbContext.Students)
+            {
+                if (dbStudent.Idroom == id)
+                    studentList.Add(MapDbObjectToModel(dbStudent));
+            }
+            return studentList;
+        }
+
         public void InsertStudent(StudentModel studentModel)
         {
             studentModel.Idstudent = Guid.NewGuid();
@@ -73,6 +90,7 @@ namespace ManageAccommodation.Repository
             dbContext.Students.Add(MapModelToDbObject(studentModel));
             dbContext.SaveChanges();
         }
+
 
         public void UpdateStudent(StudentModel studentModel)
         {

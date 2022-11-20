@@ -14,7 +14,7 @@ namespace ManageAccommodation.ViewModels
         public decimal PricePerSt { get; set; }
         public string? DormName { get; set; }
 
-        public RoomViewModel(RoomModel model, DormRepository dormRepository)
+        public RoomViewModel(RoomModel model, DormRepository dormRepository, StudentRepository studentRepository)
         {
             this.Idroom = model.Idroom;
             this.Iddorm = model.Iddorm;

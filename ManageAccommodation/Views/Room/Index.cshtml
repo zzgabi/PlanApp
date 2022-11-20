@@ -68,7 +68,8 @@
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.Idroom  }) |
                     @Html.ActionLink("Details", "Details", new { id=item.Idroom }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.Idroom })
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Idroom }) @*|
+                    @Html.ActionLink("Place Student", "PlaceStudent", new { id=item.Idroom })*@
             </td>
         </tr>
 }
