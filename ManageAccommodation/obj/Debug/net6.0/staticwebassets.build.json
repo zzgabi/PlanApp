@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "LyzPgwuEZy8jKC3mtHgnWVyHm+a7mclCpOz0S6eQ5SE=",
+  "Hash": "AI3blP5gg13K+XTLf8gRLd8NurF1eSbrwXZXdkcIAFU=",
   "Source": "ManageAccommodation",
   "BasePath": "_content/ManageAccommodation",
   "Mode": "Default",
@@ -1103,6 +1103,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\images\\student.jpg",
+      "SourceId": "ManageAccommodation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\",
+      "BasePath": "_content/ManageAccommodation",
+      "RelativePath": "images/student.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\student.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\images\\user.jpg",
+      "SourceId": "ManageAccommodation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\",
+      "BasePath": "_content/ManageAccommodation",
+      "RelativePath": "images/user.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\user.jpg"
     },
     {
       "Identity": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\js\\site.js",

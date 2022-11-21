@@ -12,6 +12,7 @@
         pager = ViewBag.Pager;
         pageNo = pager.CurrentPage;
     }
+
 }
 
 <h1>Students Overview</h1>
@@ -22,12 +23,16 @@
 
 <partial name="_pager" model ="@pager" />
 
+
 <table class="table">
     <thead>
         <tr>
             @*<th>
                 @Html.DisplayNameFor(model => model.Idstudent)
             </th>*@
+            <th>
+
+            </th>
             <th>
                 Name
             </th>
@@ -52,9 +57,9 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Idstudent)
-            </td>*@
+           <td>
+                    <img src="images/user.jpg" alt="" class="avatar">
+           </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StudentName)
             </td>
@@ -74,9 +79,15 @@
                 @Html.DisplayFor(modelItem => item.Debt)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Idstudent }) |
+@*                @Html.ActionLink("Edit", "Edit", new { id = item.Idstudent }) |
                 @Html.ActionLink("Details", "Details", new { id = item.Idstudent }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Idstudent })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Idstudent })*@
+                <div class="btn-group">
+                    <a asp-action="Edit" asp-route-id="@item.Idstudent" class="btn btn-sm btn-info">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Idstudent" class="btn btn-sm btn-primary ml-1">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Idstudent" class="btn btn-sm btn-danger ml-1">Delete</a>
+                </div>
+
             </td>
         </tr>
 }

@@ -8,14 +8,9 @@
 <h1>Student Details</h1>
 
 <div>
-    <hr />
-    <dl class="row">
-        @*<dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idstudent)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idstudent)
-        </dd>*@
+    <br />
+    <div>  
+        <dl class="row">
         <dt class = "col-sm-2">
             @*@Html.DisplayNameFor(model => model.StudentName)*@
             Student name
@@ -36,10 +31,10 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Idroom)
+            Room No
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Idroom)
+                @Html.DisplayFor(model => model.RoomNo)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PaymStatus)
@@ -54,6 +49,10 @@
             @Html.DisplayFor(model => model.Debt)
         </dd>
     </dl>
+    </div>
+@*    <div class="col-4">
+        <img src="images/user.jpg" alt="" class="">
+    </div>*@
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Idstudent }) |

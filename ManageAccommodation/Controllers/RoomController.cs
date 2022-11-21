@@ -24,14 +24,28 @@ namespace ManageAccommodation.Controllers
 
 
         // GET: RoomController
-        public ActionResult Index()
+        public IActionResult Index(int pg = 1)
         {
             var rooms = _repository.GetAllRoomsInfo();
-            foreach(var item in rooms)
+
+            //pager logic
+            const int pageSize = 10;
+
+            if (pg < 1)
+                pg = 1;
+
+            int recsCount = rooms.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var pageRooms = rooms.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+
+            foreach (var item in rooms)
             {
                 item.DormName = _dormRepository.GetDormByID(item.Iddorm).DormName;
             }
-            return View("Index", rooms);
+            return View("Index", pageRooms);
         }
 
         // GET: RoomController/Details/5

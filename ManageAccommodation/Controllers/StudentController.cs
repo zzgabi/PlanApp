@@ -38,7 +38,7 @@ namespace ManageAccommodation.Controllers
             var pageStudents = students.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
 
-            foreach(var student in students)
+            foreach(var student in pageStudents)
             {
                 student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
             }
@@ -49,6 +49,7 @@ namespace ManageAccommodation.Controllers
         public ActionResult Details(Guid id)
         {
             var model = _repository.GetStudentById(id);
+            model.RoomNo = _repository.GetIdRoomByStudentId(id).ToString().Substring(0, 5);
             return View("StudentDetails", model);
         }
 

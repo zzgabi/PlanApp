@@ -3,6 +3,16 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Pager pager = new Pager();
+
+    int pageNo = 0;
+
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+    }
 }
 
 <h1>Dorms Overview</h1>
@@ -10,6 +20,7 @@
 <p>
     <a asp-action="Create">Add new dorm</a>
 </p>
+<partial name="_pager" model="@pager" />
 <table class="table">
     <thead>
         <tr>
@@ -51,10 +62,17 @@
             <td>
                 @Html.DisplayFor(modelItem => item.TotalRooms)
             </td>
-            <td>
+@*            <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Iddorm }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Iddorm }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Iddorm })
+            </td>*@
+            <td>
+                <div class="btn-group">
+                        <a asp-action="Edit" asp-route-id="@item.Iddorm" class="btn btn-sm btn-info">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Iddorm" class="btn btn-sm btn-primary ml-1">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Iddorm" class="btn btn-sm btn-danger  ml-1">Delete</a>
+                </div>
             </td>
         </tr>
 }

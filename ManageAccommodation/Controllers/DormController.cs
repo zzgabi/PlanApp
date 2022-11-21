@@ -1,4 +1,5 @@
 ﻿using ManageAccommodation.Models;
+using ManageAccommodation.Models.DBObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,9 +17,21 @@ namespace ManageAccommodation.Controllers
         }
 
         // GET: DormController
-        public ActionResult Index()
+        public IActionResult Index(int pg = 1)
         {
             var dorms = _repository.GetAllDormsInfo();
+            //pager logic
+            const int pageSize = 10;
+            if (pg < 1)
+                pg = 1;
+
+            int recsCount = dorms.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var pageDorms = dorms.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+
             return View("Index", dorms);
         }
 
