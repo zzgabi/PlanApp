@@ -87,6 +87,8 @@ namespace ManageAccommodation.Repository
         {
             studentModel.Idstudent = Guid.NewGuid();
 
+            studentModel.PaymStatus = studentModel.Debt == 0 ? "Paid" : "Unpaid";
+            
             dbContext.Students.Add(MapModelToDbObject(studentModel));
             dbContext.SaveChanges();
         }
@@ -104,6 +106,9 @@ namespace ManageAccommodation.Repository
                 existingStudent.Email = studentModel.Email;
                 existingStudent.Idroom = studentModel.Idroom;
                 existingStudent.Debt = studentModel.Debt;
+
+                existingStudent.PaymStatus = studentModel.Debt == 0 ? "Paid" : "Unpaid";                
+
                 dbContext.SaveChanges();
             }
         }

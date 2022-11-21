@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ManageAccommodation.Models
 {
@@ -13,6 +14,7 @@ namespace ManageAccommodation.Models
         public int Capacity { get; set; }
         public int OccupiedNo { get; set; }
         public int VacanciesNo { get; set; }
+        [Column(TypeName = "money")]
         public decimal PricePerSt { get; set; }
     }
 }

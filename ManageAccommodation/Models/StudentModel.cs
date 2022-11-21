@@ -1,4 +1,7 @@
-﻿namespace ManageAccommodation.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace ManageAccommodation.Models
 {
     public class StudentModel : RoomModel
     {
@@ -7,8 +10,8 @@
         public string Mobile { get; set; } = null!;
         public string? Email { get; set; }
         public string PaymStatus { get; set; } = null!;
+        [Column(TypeName = "money")]
         public decimal Debt { get; set; }
-
         public string? RoomNo { get; set; }
     }
 }

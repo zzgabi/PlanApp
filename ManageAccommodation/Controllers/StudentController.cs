@@ -9,24 +9,40 @@ namespace ManageAccommodation.Controllers
     public class StudentController : Controller
     {
 
+
         private Repository.StudentRepository _repository;
         private Repository.RoomRepository _roomRepository;
 
+      
         public StudentController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.StudentRepository(dbContext);
             _roomRepository = new RoomRepository(dbContext);
+
         }
 
         // GET: StudentController
-        public ActionResult Index()
+        public IActionResult Index(int pg = 1)
         {
             var students = _repository.GetAllStudents();
+            //pager logic
+            const int pageSize = 10;
+
+            if (pg < 1)
+                pg = 1;
+
+            int recsCount = students.Count();
+
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var pageStudents = students.Skip(recSkip).Take(pager.PageSize).ToList();
+            this.ViewBag.Pager = pager;
+
             foreach(var student in students)
             {
                 student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
             }
-            return View("Index", students);
+            return View("Index", pageStudents);
         }
 
         // GET: StudentController/Details/5
