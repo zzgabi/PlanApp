@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "AI3blP5gg13K+XTLf8gRLd8NurF1eSbrwXZXdkcIAFU=",
+  "Hash": "8z6mcKtNlf/9ZNDxhkhwM6+IHv7q4nwU7E8cRNSC7dI=",
   "Source": "ManageAccommodation",
   "BasePath": "_content/ManageAccommodation",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\images\\room.jpg",
+      "SourceId": "ManageAccommodation",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\",
+      "BasePath": "_content/ManageAccommodation",
+      "RelativePath": "images/room.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\room.jpg"
     },
     {
       "Identity": "C:\\Users\\zzgabi\\Desktop\\PlanAppp\\ManageAccommodation\\ManageAccommodation\\wwwroot\\images\\student.jpg",

@@ -29,7 +29,7 @@ namespace ManageAccommodation.Controllers
 
             var pager = new Pager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            var pageDorms = dorms.Skip(recSkip).Take(pager.PageSize).ToList();
+            var pageDorms = dorms.Skip(recSkip).Take(pager.PageSize);
             this.ViewBag.Pager = pager;
 
             return View("Index", dorms);

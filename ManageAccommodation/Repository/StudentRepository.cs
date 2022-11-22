@@ -1,5 +1,6 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Models.DBObjects;
+using ManageAccommodation.ViewModels;
 
 namespace ManageAccommodation.Repository
 {
@@ -113,6 +114,21 @@ namespace ManageAccommodation.Repository
             }
         }
 
+        public void UpdatePayments(StudentModel studentModel)
+        {
+            Student existingStudent = dbContext.Students.FirstOrDefault(x => x.Idstudent == studentModel.Idstudent);
+            
+            var model = dbContext.Rooms.FirstOrDefault(x => x.Idroom == studentModel.Idroom);
+
+            if(existingStudent != null)
+            {
+                existingStudent.Debt = existingStudent.Debt + model.PricePerSt;
+                if (existingStudent.Debt >= 0)
+                    existingStudent.PaymStatus = "Unpaid";
+
+                dbContext.SaveChanges();
+            }
+        }
         public void DeleteStudent(StudentModel studentModel)
         {
             Student existingStudent = dbContext.Students.FirstOrDefault(x => x.Idstudent == studentModel.Idstudent);

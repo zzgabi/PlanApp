@@ -29,7 +29,8 @@
                 @Html.DisplayNameFor(model => model.Idroom)
             </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["VacancySortParm"]">@Html.DisplayNameFor(model => model.Status)</a>
+
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Capacity)
@@ -59,6 +60,9 @@
             @*<td>
                 @Html.DisplayFor(modelItem => item.Idroom)
             </td>*@
+            <td>
+                    <img src="images/room.jpg" alt="" class="avatar">
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>

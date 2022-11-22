@@ -21,6 +21,8 @@
     <a asp-action="Create">Place student</a>
 </p>
 
+
+
 <partial name="_pager" model ="@pager" />
 
 
@@ -34,7 +36,7 @@
 
             </th>
             <th>
-                Name
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.StudentName)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Mobile)
@@ -46,10 +48,10 @@
                 Room
             </th>
             <th>
-                Payment Status
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PaymStatusParm"]">@Html.DisplayNameFor(model => model.PaymStatus)</a>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Debt)
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DebtParm"]">@Html.DisplayNameFor(model => model.PaymStatus)</a>
             </th>
             <th></th>
         </tr>

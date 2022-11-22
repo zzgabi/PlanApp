@@ -1,0 +1,56 @@
+﻿@model ManageAccommodation.ViewModels.PaymentViewModel
+
+@{
+    ViewData["Title"] = "CreatePayment";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>ADd Payment</h1>
+
+<h4>Payment form:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                Student:
+                @Html.DropDownList("Idstudent", new SelectList(@ViewBag.StudentNameDDL, "Value", "Text"), "Select Student", new {@class = "form-control"})
+                <span asp-validation-for="IdStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Dorm:
+                @Html.DropDownList("Iddorm", new SelectList(@ViewBag.DormNameDDL, "Value", "Text"), "Select Dorm", new {@class = "form-control"})
+                <span asp-validation-for="IdDorm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                Room
+                @Html.DropDownList("Idroom", new SelectList(@ViewBag.RoomNameDDL, "Value", "Text"), "Select Room", new {@class = "form-control"})
+                <span asp-validation-for="IdRoom" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Payments Overview</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

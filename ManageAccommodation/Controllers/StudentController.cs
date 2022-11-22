@@ -1,8 +1,11 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Repository;
+using ManageAccommodation.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using System.Configuration;
 
 namespace ManageAccommodation.Controllers
 {
@@ -12,8 +15,7 @@ namespace ManageAccommodation.Controllers
 
         private Repository.StudentRepository _repository;
         private Repository.RoomRepository _roomRepository;
-
-      
+        Methods metods = new Methods();
         public StudentController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.StudentRepository(dbContext);
@@ -22,9 +24,21 @@ namespace ManageAccommodation.Controllers
         }
 
         // GET: StudentController
-        public IActionResult Index(int pg = 1)
+        public async Task<IActionResult> Index(string sortOrder, int pg = 1)
         {
             var students = _repository.GetAllStudents();
+            ////to do: update payments once per month
+            //var date = DateTime.Now.Day;
+            //if (date - 1 == 9)    //NOT OK / to add status or mark
+            //{
+            //    foreach (var student in students)
+            //    {
+            //        _repository.UpdatePayments(student);
+            //    }
+            //}
+            var studentViewModelList = new List<StudentViewModel>();
+
+
             //pager logic
             const int pageSize = 10;
 
@@ -35,14 +49,53 @@ namespace ManageAccommodation.Controllers
 
             var pager = new Pager(recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
-            var pageStudents = students.Skip(recSkip).Take(pager.PageSize).ToList();
-            this.ViewBag.Pager = pager;
+            var pageStudents = students.Skip(recSkip).Take(pager.PageSize);
 
-            foreach(var student in pageStudents)
+            foreach (var student in pageStudents)
             {
-                student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
+                studentViewModelList.Add(new StudentViewModel(student, _roomRepository));
+                //student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
             }
-            return View("Index", pageStudents);
+
+            //sort logic
+            var studentTask = from x in studentViewModelList select x;
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["PaymStatusParm"] = String.IsNullOrEmpty(sortOrder) ? "unpaid" : "paid";
+            ViewData["DebtParm"] = String.IsNullOrEmpty(sortOrder) ? "debt_desc" : "debt";
+
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    studentTask = studentTask.OrderByDescending(x => x.StudentName).ToList();
+                    break;
+                case "paid":
+                    studentTask = studentTask.OrderBy(s => s.PaymStatus);
+                    //studentTask = studentTask.Where(s => s.PaymStatus == "Paid");
+                    break;
+                case "unpaid":
+                    studentTask = studentTask.OrderByDescending(x => x.PaymStatus);
+                    //studentTask = studentTask.Where(s => s.PaymStatus == "Unpaid");
+                    break;
+                case "debt_desc":
+                    studentTask = studentTask.OrderByDescending(x => x.Debt);
+                    break;
+                case "debt":
+                    studentTask = studentTask.OrderBy(x => x.Debt);
+                    break;
+                default:
+                    studentTask = studentTask.OrderBy(s => s.StudentName);
+                    break;
+
+            }
+
+
+
+
+            this.ViewBag.Pager = pager;
+            return View("Index", studentTask);
         }
 
         // GET: StudentController/Details/5
@@ -56,14 +109,9 @@ namespace ManageAccommodation.Controllers
         // GET: StudentController/Create
         public ActionResult Create()
         {
-            List<SelectListItem> Status = new List<SelectListItem>()
-            {
-                new SelectListItem() {Text="Paid", Value="Paid"},
-                new SelectListItem() { Text="Unpaid", Value="Unpaid"},
-            };
             var rooms = _roomRepository.GetAllFreeRooms().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
             ViewBag.RoomNo = rooms;
-            ViewBag.Status = Status;
+            ViewBag.Status = metods.Status;
             return View("CreateStudent");
         }
 

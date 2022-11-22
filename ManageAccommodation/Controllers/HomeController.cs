@@ -1,5 +1,8 @@
 ﻿using ManageAccommodation.Models;
+using ManageAccommodation.Repository;
+using ManageAccommodation.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Core.Types;
 using System.Diagnostics;
 
 namespace ManageAccommodation.Controllers
@@ -11,6 +14,7 @@ namespace ManageAccommodation.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
         }
 
         public IActionResult Index()

@@ -24,7 +24,7 @@ namespace ManageAccommodation.Controllers
 
 
         // GET: RoomController
-        public IActionResult Index(int pg = 1)
+        public IActionResult Index(string sortOrder, int pg = 1)
         {
             var rooms = _repository.GetAllRoomsInfo();
 
@@ -44,6 +44,17 @@ namespace ManageAccommodation.Controllers
             foreach (var item in rooms)
             {
                 item.DormName = _dormRepository.GetDormByID(item.Iddorm).DormName;
+            }
+
+            ViewData["VacancySortParm"] = String.IsNullOrEmpty(sortOrder) ? "Ocupied" : "";
+            switch (sortOrder)
+            {
+                case "Ocupied":
+                    pageRooms = rooms.OrderBy(x => x.Status).ToList();
+                    break;
+                default:
+                    pageRooms = rooms.OrderByDescending(x => x.Status).ToList();
+                    break;
             }
             return View("Index", pageRooms);
         }
