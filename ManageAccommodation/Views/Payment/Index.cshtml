@@ -18,7 +18,9 @@
 <h1>Payments OverView</h1>
 <partial name="_pager" model="@pager" />
 <p>
-    <a asp-action="Create">Register payment</a>
+    @if(User.IsInRole("KeyUser")){
+     <a asp-action="Create">Register payment</a>
+    }
 </p>
 <table class="table">
     <thead>

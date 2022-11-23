@@ -18,16 +18,15 @@
 <h1>Rooms Overview</h1>
 
 <p>
-    <a asp-action="Create">Create New Room</a>
+    @if (User.IsInRole("KeyUser")){
+        <a asp-action="Create">Create New Room</a>
+    }
 </p>
 <partial name="_pager" model="@pager" />
 
 <table class="table">
     <thead>
         <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Idroom)
-            </th>*@
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["VacancySortParm"]">@Html.DisplayNameFor(model => model.Status)</a>
 
@@ -87,9 +86,13 @@
                     @Html.ActionLink("Delete", "Delete", new { id=item.Idroom }) @*|
                     @Html.ActionLink("Place Student", "PlaceStudent", new { id=item.Idroom })*@
                     <div class="btn-group">
-                        <a asp-action="Edit" asp-route-id="@item.Idroom" class="btn btn-sm btn-info">Edit</a>
                         <a asp-action="Details" asp-route-id="@item.Idroom" class="btn btn-sm btn-primary ml-1">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Idroom" class="btn btn-sm btn-danger  ml-1">Delete</a>
+                        @if (User.IsInRole("KeyUser")) {
+                            <a asp-action="Edit" asp-route-id="@item.Idroom" class="btn btn-sm btn-info">Edit</a>
+                        }
+                        @if (User.IsInRole("Admin") ){
+                            <a asp-action="Delete" asp-route-id="@item.Idroom" class="btn btn-sm btn-danger  ml-1">Delete</a>
+                        }
                     </div>
             </td>
         </tr>

@@ -814,3 +814,4 @@ C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\obj\Deb
 C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\obj\Debug\net6.0\ManageAccommodation.pdb
 C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\obj\Debug\net6.0\ManageAccommodation.genruntimeconfig.cache
 C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\obj\Debug\net6.0\ref\ManageAccommodation.dll
+C:\Users\zzgabi\Desktop\PlanAppp\ManageAccommodation\ManageAccommodation\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll

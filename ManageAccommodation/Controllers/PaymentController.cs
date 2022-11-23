@@ -2,12 +2,14 @@
 using ManageAccommodation.Models.DBObjects;
 using ManageAccommodation.Repository;
 using ManageAccommodation.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ManageAccommodation.Controllers
 {
+    [Authorize(Roles = "User")]
     public class PaymentController : Controller
     {
         private Repository.PaymentRepository _paymRepository;
@@ -95,27 +97,27 @@ namespace ManageAccommodation.Controllers
         }
 
         // GET: PaymentController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
-        // POST: PaymentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //// POST: PaymentController/Edit/5
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id, IFormCollection collection)
+        //{
+        //    try
+        //    {
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
-        // GET: PaymentController/Delete/5
+        //GET: PaymentController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();

@@ -2,6 +2,7 @@
 using ManageAccommodation.Models.DBObjects;
 using ManageAccommodation.Repository;
 using ManageAccommodation.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -73,7 +74,7 @@ namespace ManageAccommodation.Controllers
 
         }
 
-
+        [Authorize(Roles = "KeyRole")]
         // GET: RoomController/Create
         public  ActionResult Create()
         {
@@ -113,7 +114,7 @@ namespace ManageAccommodation.Controllers
                 return View("CreateRoom");
             }
         }
-
+        [Authorize(Roles ="KeyUser")]
         // GET: RoomController/Edit/5
         public ActionResult Edit(Guid id)
         {
@@ -146,7 +147,7 @@ namespace ManageAccommodation.Controllers
                 return RedirectToAction("Index", id);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: RoomController/Delete/5
         public ActionResult Delete(Guid id)
         {

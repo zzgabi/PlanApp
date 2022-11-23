@@ -1,6 +1,7 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Repository;
 using ManageAccommodation.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -108,10 +109,16 @@ namespace ManageAccommodation.Controllers
             return View("StudentDetails", model);
         }
 
+        [Authorize(Roles = "User, KeyRole")]
         // GET: StudentController/Create
         public ActionResult Create()
         {
             var rooms = _roomRepository.GetAllFreeRooms().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            var dorm = new StudentModel();
+            if (User.Identity.IsAuthenticated)
+            {
+                dorm.Tags = User.Identity.Name;
+            }
             ViewBag.RoomNo = rooms;
             ViewBag.Status = metods.Status;
             return View("CreateStudent");
@@ -139,7 +146,7 @@ namespace ManageAccommodation.Controllers
                 return View("CreateStudent");
             }
         }
-
+        [Authorize(Roles = "User, KeyRole")]
         // GET: StudentController/Edit/5
         public ActionResult Edit(Guid id)
         {
@@ -173,7 +180,7 @@ namespace ManageAccommodation.Controllers
                 return RedirectToAction("Index", id);
             }
         }
-
+        [Authorize(Roles = "User, KeyRole")]
         // GET: StudentController/Delete/5
         public ActionResult Delete(Guid id)
         {
