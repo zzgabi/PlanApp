@@ -14,80 +14,83 @@
     }
 
 }
+<div class="row">
+    <div class="main">
+    <h1>Students Overview</h1>
 
-<h1>Students Overview</h1>
-
-<p>
-    <a asp-action="Create">Place student</a>
-</p>
-
-
-
-<partial name="_pager" model ="@pager" />
+    <p>
+        <a asp-action="Create">Place student</a>
+    </p>
+    <partial name="_pager" model ="@pager" />
 
 
-<table class="table">
-    <thead>
-        <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.Idstudent)
-            </th>*@
-            <th>
+    <table class="table">
+        <thead>
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Idstudent)
+                </th>*@
+                <th>
 
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.StudentName)</a>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Mobile)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["PaymStatusParm"]">@Html.DisplayNameFor(model => model.PaymStatus)</a>
-            </th>
-            <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["DebtParm"]">@Html.DisplayNameFor(model => model.Debt)</a>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           <td>
-                    <img src="images/user.jpg" alt="" class="avatar">
-           </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Mobile)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PaymStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Debt)
-            </td>
-            <td>
-@*                @Html.ActionLink("Edit", "Edit", new { id = item.Idstudent }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Idstudent }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Idstudent })*@
-                <div class="btn-group">
-                    <a asp-action="Details" asp-route-id="@item.Idstudent" class="btn btn-sm btn-primary ml-1">Details</a>
-                        @if (User.IsInRole("KeyUser")  || User.IsInRole("Admin")){
-                            <a asp-action="Edit" asp-route-id="@item.Idstudent" class="btn btn-sm btn-info">Edit</a>
-                            <a asp-action="Delete" asp-route-id="@item.Idstudent" class="btn btn-sm btn-danger ml-1">Delete</a>
-                    }
-                </div>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]">@Html.DisplayNameFor(model => model.StudentName)</a>
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Mobile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["PaymStatusParm"]">@Html.DisplayNameFor(model => model.PaymStatus)</a>
+                </th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["DebtParm"]">@Html.DisplayNameFor(model => model.Debt)</a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+               <td>
+                        <img src="images/user.jpg" alt="" class="avatar">
+               </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StudentName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mobile)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Debt)
+                </td>
+                <td>
+    @*                @Html.ActionLink("Edit", "Edit", new { id = item.Idstudent }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Idstudent }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Idstudent })*@
+                    <div class="btn-group">
+                        <a asp-action="Details" asp-route-id="@item.Idstudent" class="btn btn-sm btn-primary ml-1">Details</a>
+                            @if (User.IsInRole("KeyUser")  || User.IsInRole("Admin")){
+                                <a asp-action="Edit" asp-route-id="@item.Idstudent" class="btn btn-sm btn-info">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@item.Idstudent" class="btn btn-sm btn-danger ml-1">Delete</a>
+                        }
+                    </div>
 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+
