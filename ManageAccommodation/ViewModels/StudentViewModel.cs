@@ -16,7 +16,7 @@ namespace ManageAccommodation.ViewModels
             this.Debt = stModel.Debt;
             this.PaymStatus = stModel.PaymStatus;
             this.Idroom = stModel.Idroom;
-            this.RoomNo = stModel.Idroom.ToString().Substring(0, 5);
+            this.RoomNo = stModel.Idroom.ToString().Substring(0, 3);
             this.Email = stModel.Email;
             this.Mobile = stModel.Mobile;
             this.PricePerSt = stModel.PricePerSt;

@@ -27,7 +27,7 @@ namespace ManageAccommodation.ViewModels
             this.IdStudent = paymentModel.Idstudent;
             this.IdDorm = paymentModel.Iddorm;
             this.Date = paymentModel.Date;
-            this.RoomNo =paymentModel.Idroom.ToString().Substring(0, 5);
+            this.RoomNo =paymentModel.Idroom.ToString().Substring(0, 3);
             var student = studentRepository.GetStudentById(paymentModel.Idstudent);
             this.DormName = dormRepository.GetDormByID(paymentModel.Iddorm).DormName;
             this.StudentName = student.StudentName;

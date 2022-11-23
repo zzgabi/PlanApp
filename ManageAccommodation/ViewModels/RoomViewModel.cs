@@ -23,7 +23,7 @@ namespace ManageAccommodation.ViewModels
             this.OccupiedNo = model.OccupiedNo;
             this.VacanciesNo = model.VacanciesNo;
             this.Status = model.Status;
-            this.DormName = dormRepository.GetDormByID(Iddorm).DormName.ToString().Substring(0, 5); ;
+            this.DormName = dormRepository.GetDormByID(Iddorm).DormName.ToString().Substring(0, 3); ;
         }
 
     }

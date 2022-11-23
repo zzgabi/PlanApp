@@ -5,11 +5,12 @@ using ManageAccommodation.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ManageAccommodation.Controllers
 {
-    [Authorize(Roles = "User")]
+    [Authorize(Roles = "KeyUser, Admin")]
     public class PaymentController : Controller
     {
         private Repository.PaymentRepository _paymRepository;
@@ -61,7 +62,7 @@ namespace ManageAccommodation.Controllers
             
             return View("PaymentDetails", paymViewModel);
         }
-
+        [Authorize(Roles ="KeyUser, Admin")]
         // GET: PaymentController/Create
         public ActionResult Create()
         {
@@ -118,23 +119,29 @@ namespace ManageAccommodation.Controllers
         //}
 
         //GET: PaymentController/Delete/5
-        public ActionResult Delete(int id)
+        [Authorize(Roles = "KeyUser, Admin")]
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            var model = _paymRepository.GetPaymentById(id);
+            var paymViewModel = new PaymentViewModel(model, _studentRepository, _dormRepository, _roomRepository);
+
+            return View("DeletePayment", paymViewModel);
         }
 
         // POST: PaymentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Guid id, IFormCollection collection)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var model = _paymRepository.GetPaymentById(id);
+                _paymRepository.DeletePayment(model);
+                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View("DeletePayment", id);
             }
         }
     }

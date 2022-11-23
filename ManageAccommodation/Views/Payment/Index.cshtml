@@ -18,7 +18,8 @@
 <h1>Payments OverView</h1>
 <partial name="_pager" model="@pager" />
 <p>
-    @if(User.IsInRole("KeyUser")){
+    @if (User.IsInRole("KeyUser") || User.IsInRole("Admin"))
+    {
      <a asp-action="Create">Register payment</a>
     }
 </p>
@@ -59,6 +60,12 @@
                     <div class="btn-group">
                         <a asp-action="Details" asp-route-id="@item.IdPayment" class="btn btn-sm btn-primary ml-1">Details</a>
                     </div>
+                    @if (User.IsInRole("KeyUser") || User.IsInRole("Admin")){
+                        <div class="btn-group">
+                            <a asp-action="Delete" asp-route-id="@item.IdPayment" class="btn btn-sm btn-danger ml-1">Delete</a>
+                        </div>
+                    }
+                    
             </td>
         </tr>
 }

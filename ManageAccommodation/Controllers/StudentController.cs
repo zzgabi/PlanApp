@@ -57,7 +57,7 @@ namespace ManageAccommodation.Controllers
             foreach (var student in pageStudents)
             {
                 studentViewModelList.Add(new StudentViewModel(student, _roomRepository));
-                //student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 5);
+                //student.RoomNo = _roomRepository.GetRoomById(student.Idroom).Idroom.ToString().Substring(0, 3);
             }
 
             //sort logic
@@ -105,15 +105,15 @@ namespace ManageAccommodation.Controllers
         public ActionResult Details(Guid id)
         {
             var model = _repository.GetStudentById(id);
-            model.RoomNo = _repository.GetIdRoomByStudentId(id).ToString().Substring(0, 5);
+            model.RoomNo = _repository.GetIdRoomByStudentId(id).ToString().Substring(0, 3);
             return View("StudentDetails", model);
         }
 
-        [Authorize(Roles = "User, KeyRole")]
+        [Authorize(Roles = "KeyRole, Admin")]
         // GET: StudentController/Create
         public ActionResult Create()
         {
-            var rooms = _roomRepository.GetAllFreeRooms().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            var rooms = _roomRepository.GetAllFreeRooms().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 3), x.Idroom.ToString()));
             var dorm = new StudentModel();
             if (User.Identity.IsAuthenticated)
             {
@@ -146,12 +146,12 @@ namespace ManageAccommodation.Controllers
                 return View("CreateStudent");
             }
         }
-        [Authorize(Roles = "User, KeyRole")]
+        [Authorize(Roles = "KeyRole, Admin")]
         // GET: StudentController/Edit/5
         public ActionResult Edit(Guid id)
         {
             
-            var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
+            var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 3), x.Idroom.ToString()));
             ViewBag.RoomNo = rooms;
             ViewBag.Status = metods.Status;
 
@@ -180,12 +180,12 @@ namespace ManageAccommodation.Controllers
                 return RedirectToAction("Index", id);
             }
         }
-        [Authorize(Roles = "User, KeyRole")]
+        [Authorize(Roles = "KeyRole, Admin")]
         // GET: StudentController/Delete/5
         public ActionResult Delete(Guid id)
         {
             var model = _repository.GetStudentById(id);
-            model.RoomNo = _roomRepository.GetRoomById(model.Idroom).Idroom.ToString().Substring(0, 5);
+            model.RoomNo = _roomRepository.GetRoomById(model.Idroom).Idroom.ToString().Substring(0, 3);
 
             return View("DeleteStudent", model);
         }

@@ -21,5 +21,8 @@ namespace ManageAccommodation.Models
         [Column(TypeName = "money")]
         public decimal PricePerSt { get; set; }
 
+        public string? RoomNo { get; set; }
+
+
     }
 }

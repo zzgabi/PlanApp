@@ -44,6 +44,7 @@ namespace ManageAccommodation.Controllers
 
             foreach (var item in rooms)
             {
+                item.RoomNo = item.Idroom.ToString().Substring(0, 3);
                 item.DormName = _dormRepository.GetDormByID(item.Iddorm).DormName;
             }
 
@@ -59,13 +60,15 @@ namespace ManageAccommodation.Controllers
             }
             return View("Index", pageRooms);
         }
-
+       
         // GET: RoomController/Details/5
         public ActionResult Details(Guid id)
         {
             var model = _repository.GetRoomById(id);
+            model.RoomNo = id.ToString().Substring(0, 3);
             model.DormName = _dormRepository.GetDormByID(model.Iddorm).DormName;
             
+
             var studentModel = _studentRepository.GetStudentsByIdRoom(id);
             ViewData["StudsAssign"] = studentModel;
             return View("RoomDetails", model);
@@ -74,7 +77,7 @@ namespace ManageAccommodation.Controllers
 
         }
 
-        [Authorize(Roles = "KeyRole")]
+        [Authorize(Roles = "KeyRole, Admin")]
         // GET: RoomController/Create
         public  ActionResult Create()
         {
@@ -114,7 +117,7 @@ namespace ManageAccommodation.Controllers
                 return View("CreateRoom");
             }
         }
-        [Authorize(Roles ="KeyUser")]
+        [Authorize(Roles = "KeyRole, Admin")]
         // GET: RoomController/Edit/5
         public ActionResult Edit(Guid id)
         {

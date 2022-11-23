@@ -66,7 +66,7 @@ namespace ManageAccommodation.Repository
         public void InsertPayment(PaymentModel paymModel)
         {
             paymModel.Idpayment = Guid.NewGuid();
-
+            paymModel.Date = DateTime.Now;
             dbContext.Payments.Add(MapModelToDbObject(paymModel));
             dbContext.SaveChanges();
         }

@@ -18,7 +18,7 @@
 <h1>Rooms Overview</h1>
 
 <p>
-    @if (User.IsInRole("KeyUser")){
+    @if (User.IsInRole("KeyUser") || User.IsInRole("Admin")){
         <a asp-action="Create">Create New Room</a>
     }
 </p>
@@ -28,23 +28,21 @@
     <thead>
         <tr>
             <th>
-                <a asp-action="Index" asp-route-sortOrder="@ViewData["VacancySortParm"]">@Html.DisplayNameFor(model => model.Status)</a>
 
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["VacancySortParm"]">@Html.DisplayNameFor(model => model.Status)</a>
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Capacity)
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.OccupiedNo)*@
-                Occupied No
-            </th>
-            <th>
-               @* @Html.DisplayNameFor(model => model.VacanciesNo)*@
-               Vacancy No
+                @*@Html.DisplayNameFor(model => model.Iddorm)*@
+                Dorm Name
             </th>
             <th>
                 @*@Html.DisplayNameFor(model => model.Iddorm)*@
-                Dorm Name
+                Room No
             </th>
             <th>
                @* @Html.DisplayNameFor(model => model.PricePerSt)*@
@@ -69,14 +67,11 @@
                 @Html.DisplayFor(modelItem => item.Capacity)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.OccupiedNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VacanciesNo)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.DormName)
             </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNo)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PricePerSt)
             </td>
@@ -87,10 +82,11 @@
                     @Html.ActionLink("Place Student", "PlaceStudent", new { id=item.Idroom })*@
                     <div class="btn-group">
                         <a asp-action="Details" asp-route-id="@item.Idroom" class="btn btn-sm btn-primary ml-1">Details</a>
-                        @if (User.IsInRole("KeyUser")) {
+                        @if (User.IsInRole("KeyUser") || User.IsInRole("Admin")) {
                             <a asp-action="Edit" asp-route-id="@item.Idroom" class="btn btn-sm btn-info">Edit</a>
                         }
-                        @if (User.IsInRole("Admin") ){
+                        @if (User.IsInRole("Admin"))
+                        {
                             <a asp-action="Delete" asp-route-id="@item.Idroom" class="btn btn-sm btn-danger  ml-1">Delete</a>
                         }
                     </div>

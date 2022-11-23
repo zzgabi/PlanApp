@@ -12,7 +12,6 @@ namespace ManageAccommodation.Models
         public string PaymStatus { get; set; } = null!;
         [Column(TypeName = "money")]
         public decimal Debt { get; set; }
-        public string? RoomNo { get; set; }
         public string Tags { get; set; }
     }
 }
