@@ -11,5 +11,6 @@ namespace ManageAccommodation.Models
         public Guid Idstudent { get; set; }
         public DateTime Date { get; set; }
         public Guid Idroom { get; set; }
+        public decimal Amount { get; set; }
     }
 }

@@ -16,6 +16,8 @@ namespace ManageAccommodation.Controllers
         private Repository.StudentRepository _repository;
         private Repository.RoomRepository _roomRepository;
         Methods metods = new Methods();
+
+
         public StudentController(ApplicationDbContext dbContext)
         {
             _repository = new Repository.StudentRepository(dbContext);
@@ -141,14 +143,10 @@ namespace ManageAccommodation.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            List<SelectListItem> Status = new List<SelectListItem>()
-            {
-                new SelectListItem() {Text="Paid", Value="Paid"},
-                new SelectListItem() { Text="Unpaid", Value="Unpaid"},
-            };
+            
             var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
             ViewBag.RoomNo = rooms;
-            ViewBag.Status = Status;
+            ViewBag.Status = metods.Status;
 
             var model = _repository.GetStudentById(id);
             return View("EditStudent", model);

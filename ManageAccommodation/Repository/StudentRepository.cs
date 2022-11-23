@@ -114,6 +114,18 @@ namespace ManageAccommodation.Repository
             }
         }
 
+        public void UpdateDebt(Guid id, decimal amount)
+        {
+            Student existingStudent = dbContext.Students.FirstOrDefault(x => x.Idstudent == id);
+            if(existingStudent != null)
+            {
+                existingStudent.Debt -= amount;
+                existingStudent.PaymStatus = existingStudent.Debt == 0 ? "Paid" : "Unpaid";
+
+                dbContext.SaveChanges();
+            }
+        }
+
         public void UpdatePayments(StudentModel studentModel)
         {
             Student existingStudent = dbContext.Students.FirstOrDefault(x => x.Idstudent == studentModel.Idstudent);

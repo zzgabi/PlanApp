@@ -5,9 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ADd Payment</h1>
+<h1>Register a Payment</h1>
 
-<h4>Payment form:</h4>
+<h4>Form::</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,17 +18,6 @@
                 @Html.DropDownList("Idstudent", new SelectList(@ViewBag.StudentNameDDL, "Value", "Text"), "Select Student", new {@class = "form-control"})
                 <span asp-validation-for="IdStudent" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                Dorm:
-                @Html.DropDownList("Iddorm", new SelectList(@ViewBag.DormNameDDL, "Value", "Text"), "Select Dorm", new {@class = "form-control"})
-                <span asp-validation-for="IdDorm" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                Room
-                @Html.DropDownList("Idroom", new SelectList(@ViewBag.RoomNameDDL, "Value", "Text"), "Select Room", new {@class = "form-control"})
-                <span asp-validation-for="IdRoom" class="text-danger"></span>
-            </div>
-            
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
                 <input asp-for="Date" class="form-control" />

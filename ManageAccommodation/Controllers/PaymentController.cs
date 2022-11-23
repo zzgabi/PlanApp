@@ -46,24 +46,25 @@ namespace ManageAccommodation.Controllers
             }
             var paymTask = from x in paymtViewModel select x;
 
+            this.ViewBag.Pager = pager;
             return View("Index", paymTask);
         }
 
         // GET: PaymentController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var paymModel = _paymRepository.GetPaymentById(id);
+
+            var paymViewModel = new PaymentViewModel(paymModel, _studentRepository, _dormRepository, _roomRepository);
+            
+            return View("PaymentDetails", paymViewModel);
         }
 
         // GET: PaymentController/Create
         public ActionResult Create()
         {
             var studentsDDl = _studentRepository.GetAllStudents().Select(x => new SelectListItem(x.StudentName, x.Idstudent.ToString()));
-            var dormsDDl = _dormRepository.GetAllDormsInfo().Select(x => new SelectListItem(x.DormName, x.Iddorm.ToString()));
-            var roomsDDl = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 5), x.Idroom.ToString()));
-            ViewBag.DormNameDDL = dormsDDl;
             ViewBag.StudentNameDDL = studentsDDl;
-            ViewBag.RoomNameDDL = roomsDDl;
             return View("CreatePayment");
         }
 
@@ -74,18 +75,16 @@ namespace ManageAccommodation.Controllers
         {
             try
             {
-                var paymViewModelList = new List<PaymentViewModel>();
                 var paymt = new PaymentModel();
                 var task1 = TryUpdateModelAsync(paymt);
-                var task = TryUpdateModelAsync(paymViewModelList);
-                task.Wait();
+                paymt.Idroom = _studentRepository.GetStudentById(paymt.Idstudent).Idroom;
+                paymt.Iddorm = _roomRepository.GetRoomById(paymt.Idroom).Iddorm;
+
                 task1.Wait();
 
                 _paymRepository.InsertPayment(paymt);
-                //foreach (var item in paymViewModelList)
-                //{
-                //    _paymRepository.InsertPayment(item); 
-                //}
+                _studentRepository.UpdateDebt(paymt.Idstudent, paymt.Amount);
+
 
                 return RedirectToAction("Index");
             }
