@@ -37,7 +37,7 @@ namespace ManageAccommodation.Controllers
 
             int recsCount = rooms.Count();
 
-            var pager = new Pager(recsCount, pg, pageSize);
+            var pager = new Pager("Room", recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var pageRooms = rooms.Skip(recSkip).Take(pager.PageSize).ToList();
             this.ViewBag.Pager = pager;
@@ -52,10 +52,10 @@ namespace ManageAccommodation.Controllers
             switch (sortOrder)
             {
                 case "Ocupied":
-                    pageRooms = rooms.OrderBy(x => x.Status).ToList();
+                    pageRooms = pageRooms.OrderBy(x => x.Status).ToList();
                     break;
                 default:
-                    pageRooms = rooms.OrderByDescending(x => x.Status).ToList();
+                    pageRooms = pageRooms.OrderByDescending(x => x.Status).ToList();
                     break;
             }
             return View("Index", pageRooms);
@@ -77,7 +77,7 @@ namespace ManageAccommodation.Controllers
 
         }
 
-        [Authorize(Roles = "KeyRole, Admin")]
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: RoomController/Create
         public  ActionResult Create()
         {
@@ -117,7 +117,7 @@ namespace ManageAccommodation.Controllers
                 return View("CreateRoom");
             }
         }
-        [Authorize(Roles = "KeyRole, Admin")]
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: RoomController/Edit/5
         public ActionResult Edit(Guid id)
         {

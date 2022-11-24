@@ -39,7 +39,7 @@ namespace ManageAccommodation.Controllers
 
             int recsCount = payments.Count();
 
-            var pager = new Pager(recsCount, pg, pageSize);
+            var pager = new Pager("Payment", recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var pagePayments = payments.Skip(recSkip).Take(pager.PageSize);
 

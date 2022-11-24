@@ -50,7 +50,7 @@ namespace ManageAccommodation.Controllers
 
             int recsCount = students.Count();
 
-            var pager = new Pager(recsCount, pg, pageSize);
+            var pager = new Pager("Student", recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var pageStudents = students.Skip(recSkip).Take(pager.PageSize);
 
@@ -93,10 +93,6 @@ namespace ManageAccommodation.Controllers
                     break;
 
             }
-
-
-
-
             this.ViewBag.Pager = pager;
             return View("Index", studentTask);
         }
@@ -109,7 +105,7 @@ namespace ManageAccommodation.Controllers
             return View("StudentDetails", model);
         }
 
-        [Authorize(Roles = "KeyRole, Admin")]
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: StudentController/Create
         public ActionResult Create()
         {
@@ -123,7 +119,7 @@ namespace ManageAccommodation.Controllers
             ViewBag.Status = metods.Status;
             return View("CreateStudent");
         }
-
+        [Authorize(Roles = "KeyUser, Admin")]
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -146,7 +142,7 @@ namespace ManageAccommodation.Controllers
                 return View("CreateStudent");
             }
         }
-        [Authorize(Roles = "KeyRole, Admin")]
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: StudentController/Edit/5
         public ActionResult Edit(Guid id)
         {
@@ -180,7 +176,7 @@ namespace ManageAccommodation.Controllers
                 return RedirectToAction("Index", id);
             }
         }
-        [Authorize(Roles = "KeyRole, Admin")]
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: StudentController/Delete/5
         public ActionResult Delete(Guid id)
         {

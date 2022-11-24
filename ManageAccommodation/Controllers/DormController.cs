@@ -1,7 +1,9 @@
 ﻿using ManageAccommodation.Models;
 using ManageAccommodation.Models.DBObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace ManageAccommodation.Controllers
 {
@@ -27,7 +29,7 @@ namespace ManageAccommodation.Controllers
 
             int recsCount = dorms.Count();
 
-            var pager = new Pager(recsCount, pg, pageSize);
+            var pager = new Pager("Dorm", recsCount, pg, pageSize);
             int recSkip = (pg - 1) * pageSize;
             var pageDorms = dorms.Skip(recSkip).Take(pager.PageSize);
             this.ViewBag.Pager = pager;
@@ -42,6 +44,7 @@ namespace ManageAccommodation.Controllers
             return View("DetailsDorm", model);
         }
 
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: DormController/Create
         public ActionResult Create()
         {
@@ -71,14 +74,13 @@ namespace ManageAccommodation.Controllers
                 return View("CreateDorm");
             }
         }
-
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: DormController/Edit/5
         public ActionResult Edit(Guid id)
         {
             var model = _repository.GetDormByID(id);
             return View("EditDorm", model);
         }
-
         // POST: DormController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,7 +108,7 @@ namespace ManageAccommodation.Controllers
                 return RedirectToAction("Index", id);
             }
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: DormController/Delete/5
         public ActionResult Delete(Guid id)
         {
