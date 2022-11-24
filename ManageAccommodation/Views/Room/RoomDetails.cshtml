@@ -9,6 +9,13 @@
 <div>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.Iddorm)*@
+            Dorm Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DormName)
+        </dd>
         <dt class = "col-sm-2">
             Room No:
         </dt>
@@ -41,13 +48,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.VacanciesNo)
         </dd>
-        <dt class = "col-sm-2">
-            @*@Html.DisplayNameFor(model => model.Iddorm)*@
-            Dorm Name
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DormName)
-        </dd>
+
         <dt class = "col-sm-2">
             @*@Html.DisplayNameFor(model => model.PricePerSt)*@
             Price/Student
@@ -58,13 +59,16 @@
         <dt class="col-sm-2">
            Students:
         </dt>
-        @foreach (var stud in (IEnumerable<StudentModel>)ViewData["StudsAssign"]){
-            <tr>
-                <td>@stud.StudentName</td>  | Amount due:  
-                <td>@stud.Debt</td> (Lei)
-                <br/>
-            </tr>
-            }
+        @if (User.IsInRole("KeyUser") || User.IsInRole("Admin")){
+
+            @foreach (var stud in (IEnumerable<StudentModel>)ViewData["StudsAssign"]){
+                <tr>
+                    <td>@stud.StudentName</td>  | Amount due:  
+                    <td>@stud.Debt</td> (Lei)
+                    <br/>
+                </tr>
+                }
+        }
 
       
     </dl>

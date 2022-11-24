@@ -37,11 +37,7 @@
                 @Html.DropDownList("Idroom", new SelectList(@ViewBag.RoomNo, "Value", "Text"), "Select Room Code", new {@class = "form-control"})
                 <span asp-validation-for="Idroom" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                Payment Status:
-                @Html.DropDownList("PaymStatus", new SelectList(@ViewBag.Status, "Value", "Text"), "Select Status", new {@class = "form-control"})
-                <span asp-validation-for="PaymStatus" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="Debt" class="control-label"></label>
                 <input asp-for="Debt" class="form-control" />

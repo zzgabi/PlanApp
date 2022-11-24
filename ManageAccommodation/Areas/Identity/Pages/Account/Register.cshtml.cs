@@ -125,7 +125,7 @@ namespace ManageAccommodation.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    var roleName = "KeyUser";
+                    var roleName = "User";
                     if(null != _roleManager.FindByNameAsync(roleName).Result)
                     {
                         await _userManager.AddToRoleAsync(user, roleName);

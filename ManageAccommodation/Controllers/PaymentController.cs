@@ -18,7 +18,6 @@ namespace ManageAccommodation.Controllers
         private Repository.RoomRepository _roomRepository;
         private Repository.StudentRepository _studentRepository;
 
-        Methods metods = new Methods();
         public PaymentController(ApplicationDbContext dbContext)
         {
             _paymRepository = new Repository.PaymentRepository(dbContext);

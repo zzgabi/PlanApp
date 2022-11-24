@@ -147,8 +147,19 @@ namespace ManageAccommodation.Repository
 
             if(existingStudent != null)
             {
+                DeleteCascadePayments(existingStudent.Idstudent);
+
                 dbContext.Students.Remove(existingStudent);
                 dbContext.SaveChanges();
+            }
+        }
+
+        public void DeleteCascadePayments(Guid id)
+        {
+            var payms = dbContext.Payments.Where(x => x.Idstudent == id);
+            foreach(var item in payms)
+            {
+                dbContext.Payments.Remove(item);
             }
         }
     }

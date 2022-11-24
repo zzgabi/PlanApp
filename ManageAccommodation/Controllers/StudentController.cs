@@ -16,8 +16,6 @@ namespace ManageAccommodation.Controllers
 
         private Repository.StudentRepository _repository;
         private Repository.RoomRepository _roomRepository;
-        Methods metods = new Methods();
-
 
         public StudentController(ApplicationDbContext dbContext)
         {
@@ -25,7 +23,7 @@ namespace ManageAccommodation.Controllers
             _roomRepository = new RoomRepository(dbContext);
 
         }
-
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: StudentController
         public async Task<IActionResult> Index(string sortOrder, int pg = 1)
         {
@@ -96,7 +94,7 @@ namespace ManageAccommodation.Controllers
             this.ViewBag.Pager = pager;
             return View("Index", studentTask);
         }
-
+        [Authorize(Roles = "KeyUser, Admin")]
         // GET: StudentController/Details/5
         public ActionResult Details(Guid id)
         {
@@ -116,7 +114,6 @@ namespace ManageAccommodation.Controllers
                 dorm.Tags = User.Identity.Name;
             }
             ViewBag.RoomNo = rooms;
-            ViewBag.Status = metods.Status;
             return View("CreateStudent");
         }
         [Authorize(Roles = "KeyUser, Admin")]
@@ -149,7 +146,6 @@ namespace ManageAccommodation.Controllers
             
             var rooms = _roomRepository.GetAllRoomsInfo().Select(x => new SelectListItem(x.Idroom.ToString().Substring(0, 3), x.Idroom.ToString()));
             ViewBag.RoomNo = rooms;
-            ViewBag.Status = metods.Status;
 
             var model = _repository.GetStudentById(id);
             return View("EditStudent", model);
